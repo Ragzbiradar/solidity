@@ -1,0 +1,28 @@
+pragma solidity ^0.5.0;
+
+contract smartcontract{
+    mapping(address => uint) public buyer;
+    address payable sender;
+    uint coins=10;
+    constructor(address payable _address)  public{
+        sender = _address;
+        buyer[_address]=coins;
+        
+    }
+    
+    function sendcoin(address payable _toaddress) public returns(string memory){
+       if(buyer[sender]>0){
+        buyer[sender] -=1;
+        buyer[_toaddress] +=1;
+         return "succesfull transaction"; 
+       }
+       else{
+           return "insuffient balance";
+       }
+        
+    }
+    function checkbal(address payable _address) public returns(uint ){
+        return buyer[_address];
+    }
+  
+} 
