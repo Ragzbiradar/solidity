@@ -2,18 +2,18 @@ pragma solidity ^0.5.0;
 
 contract smartcontract{
     mapping(address => uint) public buyer;
-    address payable sender;
-    uint coins=10;
-    constructor(address payable _address)  public{
+    address  sender;
+    uint coins=100;
+    constructor(address  _address)  public{
         sender = _address;
         buyer[_address]=coins;
         
     }
     
-    function sendcoin(address payable _toaddress) public returns(string memory){
+    function sendcoin(address  _toaddress,uint _coin) public returns(string memory){
        if(buyer[sender]>0){
-        buyer[sender] -=1;
-        buyer[_toaddress] +=1;
+        buyer[sender] -=_coin;
+        buyer[_toaddress] +=_coin;
          return "succesfull transaction"; 
        }
        else{
